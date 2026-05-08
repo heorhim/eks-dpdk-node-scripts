@@ -1,0 +1,21 @@
+dpdk-eks-scripts
+Copyright 2024 Contributors
+
+This product includes software developed by Amazon.com, Inc. and its
+affiliates, originally published at:
+
+  https://github.com/amzn/amzn-drivers
+
+Specifically, the following files are derived from amzn/amzn-drivers,
+PR #370 (https://github.com/amzn/amzn-drivers/pull/370), which adds
+AL2023 + kernel 6.12 support for VFIO-PCI write-combine:
+
+  scripts/get-vfio-with-wc.sh
+  patches/linux-6.12-vfio-wc.patch
+
+These files are licensed under the Apache License, Version 2.0.
+A copy of the License is included in this distribution (LICENSE).
+
+The original files from amzn/amzn-drivers were obtained from the
+fork roikeman/amzn-drivers at commit
+2aa12fd1259aae78f3aae7ef69149013e2ca618b.
