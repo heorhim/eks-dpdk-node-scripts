@@ -14,8 +14,11 @@ echo "#####################################################"
 modprobe vfio_pci
 echo 1 > /sys/module/vfio/parameters/enable_unsafe_noiommu_mode
 for intf in eth{SriovStartingInterface..subnetCount}; do
-  pci_id=`ls -l /sys/class/net/"$intf" | grep device | cut -d '/' -f 9`
-  echo "$pci_id"
+  pci_id=$(ls -l /sys/class/net/"$intf" | grep device | cut -d '/' -f 9)
+  echo "Binding $intf ($pci_id) to vfio-pci..."
+  ip route flush dev "$intf" 2>/dev/null || true
+  ip addr flush dev "$intf" 2>/dev/null || true
+  ip link set "$intf" down 2>/dev/null || true
   /opt/dpdk/dpdk-devbind.py -u "$pci_id"
   /opt/dpdk/dpdk-devbind.py -b vfio-pci "$pci_id"
 done
